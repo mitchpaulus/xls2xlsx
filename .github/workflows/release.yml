@@ -1,0 +1,36 @@
+name: release
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish (NativeAOT, win-x64)
+        run: dotnet publish -c Release -o publish
+
+      - name: Zip
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          Compress-Archive -Path publish\xls2xlsx.exe -DestinationPath "xls2xlsx-win-x64-$tag.zip"
+
+      - name: GH Release
+        uses: softprops/action-gh-release@v2
+        with:
+          fail_on_unmatched_files: true
+          files: |
+            xls2xlsx-*.zip
