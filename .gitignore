@@ -1,5 +1,6 @@
 bin/
 obj/
+.codex
 *.user
 *.suo
 .vs/

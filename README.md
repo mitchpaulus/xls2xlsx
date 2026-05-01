@@ -17,6 +17,7 @@ Output binary: `bin\Release\net10.0\win-x64\publish\xls2xlsx.exe` (single native
 
 ```cmd
 xls2xlsx.exe -i input.xls -o output.xlsx [-f]
+xls2xlsx.exe --version
 ```
 
 | Flag | Meaning |
@@ -25,6 +26,7 @@ xls2xlsx.exe -i input.xls -o output.xlsx [-f]
 | `-o`, `--output` | Path to `.xlsx` (required) |
 | `-f`, `--force`  | Overwrite output if it exists |
 | `-h`, `--help`   | Show usage |
+| `--version`      | Show version |
 
 Macros (VBA) are dropped because the output format is `.xlsx`, not `.xlsm`.
 

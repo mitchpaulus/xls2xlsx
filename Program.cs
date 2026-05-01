@@ -5,6 +5,8 @@ namespace Xls2Xlsx;
 
 internal static class Program
 {
+    private const string Version = "v0.1.0";
+
     [STAThread]
     private static int Main(string[] args)
     {
@@ -22,6 +24,9 @@ internal static class Program
                 case "-h":
                 case "--help":
                     PrintUsage();
+                    return 0;
+                case "--version":
+                    Console.WriteLine(Version);
                     return 0;
                 case "-i":
                 case "--input":
@@ -122,6 +127,7 @@ internal static class Program
               -o, --output   path to output .xlsx (required)
               -f, --force    overwrite output if it exists
               -h, --help     show this message
+              --version      show version
 
             Notes:
               Requires Excel installed and registered for COM automation.
